@@ -1,42 +1,27 @@
 import React from "react";
+import { connect } from "react-redux";
+import { getLong, getLat } from "./actions";
 
 class GeoLocation extends React.Component {
-	state = {
-		lat: null,
-		long: null,
-		errorMessage: ""
+	componentDidMount = async () => {
+		this.props.getLat();
+		const myLong = await this.props.getLong();
+		console.log(myLong);
 	};
 
-	componentDidMount() {
-		window.navigator.geolocation.getCurrentPosition(
-			position =>
-				this.setState({
-					lat: position.coords.latitude,
-					long: position.coords.longitude
-				}),
-			err => this.setState({ errorMessage: err.message })
-		);
-	}
-
-	renderContent() {
-		if (this.state.errorMessage && !this.state.lat && !this.state.long) {
-			return <div>Error: {this.state.errorMessage}</div>;
-		}
-
-		if (!this.state.errorMessage && this.state.lat && this.state.long) {
-			return (
-				<div>
-					Location {this.state.lat}, {this.state.long}{" "}
-				</div>
-			);
-		}
-
-		return <div>Seeking Location...</div>;
-	}
-
 	render() {
-		return <div>{this.renderContent()}</div>;
+		return <div>Location</div>;
 	}
 }
 
-export default GeoLocation;
+const mapStateToProps = state => {
+	return {
+		long: state.long,
+		lat: state.lat
+	};
+};
+
+export default connect(
+	mapStateToProps,
+	{ getLong, getLat }
+)(GeoLocation);
