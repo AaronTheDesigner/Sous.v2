@@ -1,6 +1,10 @@
 This project was bootstrapped with
 [Create React App](https://github.com/facebook/create-react-app).
 
+### Contributors
+
+[im-ironclad](https://github.com/im-ironclad)
+
 # Sous
 
 Sous is a recipe application using React, with the following dependancies:
@@ -17,8 +21,8 @@ inspirations. Be your own sous chef!
 4. Redux Setup(complete)
 5. Google Oauth(complete)
 6. Geolocation(complete)
-7. Redux Geolocation(in progress)
-8. OpenWeather API w/ Axios
+7. Redux Geolocation(complete)
+8. OpenWeather API w/ Axios(in progress)
 9. OpenWeather Redux
 10. Recipe API w/ Axios
 11. Recipe Redux
