@@ -14,23 +14,30 @@ export const signOut = userId => {
 	};
 };
 
-export const getLat = () => {
-	return {
-		type: "GET_LAT",
-		payload: 14.48739
-	};
+export const getLat = () => dispatch => {
+	return new Promise((res, rej) => {
+		navigator.geolocation.getCurrentPosition(
+			position => {
+				dispatch({ type: "FETCH_LAT", payload: position.coords.latitude });
+				res(position.coords.latitude);
+			},
+			error => {
+				rej(error);
+			}
+		);
+	});
 };
 
 export const getLong = () => dispatch => {
-  return new Promise((res, rej) => {
-    navigator.geolocation.getCurrentPosition(
-      position => {
-        dispatch({ type: "FETCH_LONG", payload: position.coords.longitude });
-        res(position.coords.longitude);
-      },
-      error => {
-        rej(error);
-      }
-    );
-  })
+	return new Promise((res, rej) => {
+		navigator.geolocation.getCurrentPosition(
+			position => {
+				dispatch({ type: "FETCH_LONG", payload: position.coords.longitude });
+				res(position.coords.longitude);
+			},
+			error => {
+				rej(error);
+			}
+		);
+	});
 };

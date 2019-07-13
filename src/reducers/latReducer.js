@@ -1,7 +1,14 @@
-export default (state = {}, action) => {
+const initialState = {
+	lat: null
+};
+
+export default (state = initialState, action) => {
 	switch (action.type) {
 		case "FETCH_LAT":
-			return { ...action.payload };
+			return {
+				...state,
+				lat: action.payload
+			};
 		default:
 			return state;
 	}

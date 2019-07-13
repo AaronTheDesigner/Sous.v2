@@ -4,13 +4,18 @@ import { getLong, getLat } from "./actions";
 
 class GeoLocation extends React.Component {
 	componentDidMount = async () => {
-		this.props.getLat();
-		const myLong = await this.props.getLong();
-    console.log(myLong);
+		await this.props.getLat(this.props.lat);
+		await this.props.getLong(this.props.long);
 	};
 
 	render() {
-		return <div>Location</div>;
+		const { lat } = this.props.lat;
+		const { long } = this.props.long;
+		return (
+			<div>
+				{lat}, {long}
+			</div>
+		);
 	}
 }
 
