@@ -6,7 +6,7 @@ class GeoLocation extends React.Component {
 	componentDidMount = async () => {
 		this.props.getLat();
 		const myLong = await this.props.getLong();
-		console.log(myLong);
+    console.log(myLong);
 	};
 
 	render() {
