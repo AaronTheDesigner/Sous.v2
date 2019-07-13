@@ -21,9 +21,16 @@ export const getLat = () => {
 	};
 };
 
-export const getLong = dispatch => {
-	window.navigator.geolocation.getCurrentPosition(position => {
-		dispatch({ type: "FETCH_LONG", payload: position.coords.longitude });
-		return position.coords.longitude;
-	});
+export const getLong = () => dispatch => {
+  return new Promise((res, rej) => {
+    navigator.geolocation.getCurrentPosition(
+      position => {
+        dispatch({ type: "FETCH_LONG", payload: position.coords.longitude });
+        res(position.coords.longitude);
+      },
+      error => {
+        rej(error);
+      }
+    );
+  })
 };

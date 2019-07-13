@@ -1,7 +1,14 @@
-export default (state = {}, action) => {
+const initialState = {
+  long: null
+}
+
+export default (state = initialState, action) => {
 	switch (action.type) {
 		case "FETCH_LONG":
-			return { ...action.payload };
+			return {
+        ...state,
+        long: action.payload
+      };
 		default:
 			return state;
 	}
