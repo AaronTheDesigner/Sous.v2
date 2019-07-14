@@ -3,14 +3,13 @@ import React from "react";
 
 //Components
 import GoogleAuth from "./GoogleAuth";
-import GeoLocation from "./GeoLocation";
+//import GeoLocation from "./GeoLocation";
 import Weather from "./Weather";
 
 const Header = () => {
 	return (
 		<div>
 			<GoogleAuth />
-			<GeoLocation />
 			<Weather />
 		</div>
 	);

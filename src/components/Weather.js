@@ -5,11 +5,11 @@ import weather from "../api/weather";
 
 class Weather extends React.Component {
 	state = {
-		weather: "",
-		temp: "",
-		lon: 0,
-		lat: 0,
+		lon: null,
+		lat: null,
 		city: "",
+		weather: "",
+		temp: null,
 		errorMessage: ""
 	};
 
@@ -18,62 +18,55 @@ class Weather extends React.Component {
 		const newLat = await this.props.getLat(this.props.lat);
 		await this.setState({ lon: newLong });
 		await this.setState({ lat: newLat });
-
 		const response = await weather.get("/weather?", {
 			params: {
 				lon: newLong,
 				lat: newLat
 			}
 		});
-
+		const convert = ((response.data.main.temp - 273.15) * 9) / 5 + 32;
+		const fer = Math.ceil(convert);
 		this.setState({
 			weather: response.data.weather[0].main,
-			temp: response.data.main.temp,
+			temp: fer,
 			city: response.data.name
 		});
 	};
 
-	renderLocation() {
-		//if we don't have lat long set to loading
+	renderAll() {
 		if (
 			this.state.lat === 0 &&
 			this.state.lon === 0 &&
-			this.state.city === ""
+			this.state.city === "" &&
+			this.state.city === "" &&
+			this.state.temp === null
 		) {
-			return (
-				<div>
-					<p>Loading...</p>
-				</div>
-			);
+			return <div>Retrieving Data...</div>;
 		}
-
-		return <div>{this.state.city}</div>;
-	}
-
-	renderWeather() {
-		if (this.state.weather === "") {
-			return <div>Loadding...</div>;
-		}
-		return <div>{this.state.weather}</div>;
-	}
-
-	convertToFeren() {
-		// (306.07K − 273.15) × 9/5 + 32 = 91.256°F
-		let kelvin = this.state.temp;
-		let convert = ((kelvin - 273.15) * 9) / 5 + 32;
-		let feren = Math.ceil(convert).toString();
-		return feren;
-	}
-
-	render() {
 		return (
 			<div>
-				<br />
-
-				<br />
-				{this.renderLocation()}
+				{this.state.lat} | {this.state.lon} | {this.state.city} |{" "}
+				{this.state.weather} | {this.state.temp}
 			</div>
 		);
+	}
+
+	// convertToFeren() {
+	// 	// (306.07K − 273.15) × 9/5 + 32 = 91.256°F
+	// 	let kelvin = this.state.temp;
+	// 	let convert = ((kelvin - 273.15) * 9) / 5 + 32;
+	// 	let feren = Math.ceil(convert).toString();
+	// 	return feren;
+	// }
+	// renderTemp() {
+	// 	let kelvin = response.data.main.temp;
+	// 	let convert = ((kelvin - 273.15) * 9) / 5 + 32;
+	// 	let string = Math.ceil(convert).toString();
+	// 	this.setState({ temp: string });
+	// }
+
+	render() {
+		return <div>{this.renderAll()}</div>;
 	}
 }
 
