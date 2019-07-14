@@ -3,8 +3,8 @@ import React from "react";
 
 //Components
 import GoogleAuth from "./GoogleAuth";
-import GeoLocation from "../GeoLocation";
-import Weather from "../Weather";
+import GeoLocation from "./GeoLocation";
+import Weather from "./Weather";
 
 const Header = () => {
 	return (

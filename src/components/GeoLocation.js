@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getLong, getLat } from "./actions";
+import { getLong, getLat } from "../actions";
 
 class GeoLocation extends React.Component {
 	componentDidMount = async () => {
