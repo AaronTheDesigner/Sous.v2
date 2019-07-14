@@ -13,7 +13,7 @@ class GeoLocation extends React.Component {
 		const { long } = this.props.long;
 		return (
 			<div>
-				{lat}, {long}
+				{long}, {lat}
 			</div>
 		);
 	}
