@@ -4,15 +4,21 @@ import React from "react";
 //Components
 import GoogleAuth from "./GoogleAuth";
 //import GeoLocation from "./GeoLocation";
-import Weather from "./Weather";
+//import Weather from "./Weather";
+//bring ^Weather^ back at a later time
+import WeatherContext from "../contexts/WeatherContext";
 
-const Header = () => {
-	return (
-		<div>
-			<GoogleAuth />
-			<Weather />
-		</div>
-	);
-};
+class Header extends React.Component {
+	static contextType = WeatherContext;
+	render() {
+		console.log(this.context);
+		return (
+			<div>
+				<p> </p>
+				<GoogleAuth />
+			</div>
+		);
+	}
+}
 
 export default Header;

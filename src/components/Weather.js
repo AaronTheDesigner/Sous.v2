@@ -51,20 +51,6 @@ class Weather extends React.Component {
 		);
 	}
 
-	// convertToFeren() {
-	// 	// (306.07K − 273.15) × 9/5 + 32 = 91.256°F
-	// 	let kelvin = this.state.temp;
-	// 	let convert = ((kelvin - 273.15) * 9) / 5 + 32;
-	// 	let feren = Math.ceil(convert).toString();
-	// 	return feren;
-	// }
-	// renderTemp() {
-	// 	let kelvin = response.data.main.temp;
-	// 	let convert = ((kelvin - 273.15) * 9) / 5 + 32;
-	// 	let string = Math.ceil(convert).toString();
-	// 	this.setState({ temp: string });
-	// }
-
 	render() {
 		return <div>{this.renderAll()}</div>;
 	}
