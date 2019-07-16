@@ -1,6 +1,7 @@
 import React from "react";
 
-const Main = () => {
+const Main = props => {
+	console.log(props.message);
 	return <div>Main</div>;
 };
 
