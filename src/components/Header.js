@@ -11,7 +11,6 @@ class Header extends React.Component {
 	render() {
 		return (
 			<div>
-				<p> </p>
 				<GoogleAuth />
 			</div>
 		);

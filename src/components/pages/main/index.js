@@ -1,7 +1,7 @@
 import React from "react";
 
 const Main = props => {
-	console.log(props.message);
+	console.log(props);
 	return <div>Main</div>;
 };
 
