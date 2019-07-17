@@ -11,6 +11,7 @@ import List from "./pages/list";
 import GoogleAuth from "./GoogleAuth";
 
 class App extends React.Component {
+	state = { message: "test" };
 	// state = {
 	// 	lon: null,
 	// 	lat: null,
@@ -45,7 +46,7 @@ class App extends React.Component {
 			<div>
 				<GoogleAuth />
 				<BrowserRouter>
-					<Route path='/' exact render={() => <Main />} />
+					<Route path='/' exact render={() => <Main test={this.state} />} />
 					<Route path='/detail' component={Detail} />
 					<Route path='/list' component={List} />
 				</BrowserRouter>
