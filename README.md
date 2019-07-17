@@ -22,10 +22,10 @@ inspirations. Be your own sous chef!
 5. Google Oauth(complete)
 6. Geolocation(complete)
 7. Redux Geolocation(complete)
-8. OpenWeather API w/ Axios(in progress)
-9. OpenWeather Redux
-10. Recipe API w/ Axios
-11. Recipe Redux
-12. Main Page
+8. OpenWeather API w/ Axios(complete)
+9. OpenWeather to App(complete)
+10. Recipe API w/ Axios(complete)
+11. Ingredient List(in progress)
+12. Main Page(in progress)
 13. Detail Page
 14. List Page
