@@ -3,17 +3,18 @@ import React from "react";
 
 //Components
 import GoogleAuth from "./GoogleAuth";
-import GeoLocation from "../GeoLocation";
-import Weather from "../Weather";
+//import GeoLocation from "./GeoLocation";
+//import Weather from "./Weather";
+//bring ^Weather^ back at a later time
 
-const Header = () => {
-	return (
-		<div>
-			<GoogleAuth />
-			<GeoLocation />
-			<Weather />
-		</div>
-	);
-};
+class Header extends React.Component {
+	render() {
+		return (
+			<div>
+				<GoogleAuth />
+			</div>
+		);
+	}
+}
 
 export default Header;
