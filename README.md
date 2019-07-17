@@ -25,7 +25,7 @@ inspirations. Be your own sous chef!
 8. OpenWeather API w/ Axios(complete)
 9. OpenWeather to App(complete)
 10. Recipe API w/ Axios(complete)
-11. Ingredient List(in progress)
+11. Ingredient List(complete)
 12. Main Page(in progress)
 13. Detail Page
 14. List Page
