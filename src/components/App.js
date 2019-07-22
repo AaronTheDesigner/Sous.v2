@@ -11,7 +11,6 @@ import List from "./pages/gallery";
 import GoogleAuth from "./GoogleAuth";
 
 class App extends React.Component {
-	state = { message: "test" };
 	// state = {
 	// 	lon: null,
 	// 	lat: null,

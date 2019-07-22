@@ -1,23 +1,11 @@
 import React, { useState } from "react";
+import { getArray, getInfo, getSummary } from "../../../api/recipe";
 
 import Ingredient from "./Ingredient";
 import IngForm from "./IngForm";
 
-const List = () => {
-	const [ingredients, setIngredients] = useState([
-		{
-			text: "cherry",
-			eliminate: false
-		},
-		{
-			text: "brown sugar",
-			eliminate: false
-		},
-		{
-			text: "chocolate",
-			eliminate: false
-		}
-	]);
+const List = props => {
+	const [ingredients, setIngredients] = useState([]);
 
 	const addIngredient = text => {
 		const newIngredients = [...ingredients, { text }];
@@ -29,6 +17,29 @@ const List = () => {
 		newIngredients.splice(index, 1);
 		setIngredients(newIngredients);
 	};
+
+	const ing = ingredients.map(ingredient => {
+		return ingredient.text;
+	});
+
+	console.log(ing.join(", "));
+
+	getArray
+		.get("", {
+			params: {
+				ingredients: ing.join(", ")
+			}
+		})
+		.then(res => {
+			console.log(res.data);
+		});
+
+	console.log(ingredients);
+	console.log(
+		ingredients.map(ingredient => {
+			return ingredient.text;
+		})
+	);
 
 	return (
 		<div className='app'>

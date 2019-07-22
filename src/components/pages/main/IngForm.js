@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const IngForm = ({ addIngredient }) => {
+const IngForm = ({ addIngredient, getRecipe }) => {
 	const [value, setValue] = useState("");
 
 	const handleSubmit = event => {
