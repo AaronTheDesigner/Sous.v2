@@ -1,15 +1,11 @@
 import React from "react";
 
-//Components
-import List from "./List";
-import Pic from "./Pic";
+import Container from "./Container";
 
 const Main = props => {
 	return (
 		<div>
-			Main
-			<Pic />
-			<List now={props} />
+			<Container />
 		</div>
 	);
 };
