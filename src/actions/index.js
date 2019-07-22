@@ -1,5 +1,7 @@
 import { SIGN_IN, SIGN_OUT } from "./types";
 
+//__Authentication__\\
+
 export const signIn = userId => {
 	return {
 		type: SIGN_IN,
@@ -13,6 +15,8 @@ export const signOut = userId => {
 		payload: userId
 	};
 };
+
+//__Location__\\
 
 export const getLat = () => dispatch => {
 	return new Promise((res, rej) => {
@@ -41,3 +45,16 @@ export const getLong = () => dispatch => {
 		);
 	});
 };
+
+//__List__\\
+
+// export const addIngredient = text => ({
+// 	type: ADD_INGREDIENT,
+// 	id: IngredientId++,
+// 	text
+// });
+
+// export const removeIngredient = id => ({
+// 	type: REMOVE_INGREDIENT,
+// 	id: id
+// });

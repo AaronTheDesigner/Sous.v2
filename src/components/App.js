@@ -5,7 +5,8 @@ import { getLong, getLat } from "../actions";
 //import weather from "../api/weather";
 
 //Page Components
-import Main from "./pages/main";
+//import Main from "./pages/main";
+import Main from "./pages/main_two";
 import Detail from "./pages/detail";
 import List from "./pages/gallery";
 import GoogleAuth from "./GoogleAuth";
