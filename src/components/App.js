@@ -46,7 +46,7 @@ class App extends React.Component {
 			<div>
 				<GoogleAuth />
 				<BrowserRouter>
-					<Route path='/' exact render={() => <Main test={this.state} />} />
+					<Route path='/' exact render={() => <Main />} />
 					<Route path='/detail' component={Detail} />
 					<Route path='/list' component={List} />
 				</BrowserRouter>

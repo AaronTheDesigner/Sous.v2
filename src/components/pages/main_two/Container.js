@@ -1,35 +1,57 @@
 import React from "react";
-import Ingredients from "./Ingredients";
-import AddIngredient from "./AddIngredient";
 
 class Container extends React.Component {
 	state = {
-		ingredients: [{ id: 1, content: "beef" }, { id: 2, content: "relish" }]
+		ingredient: "",
+		ingredientList: []
 	};
 
-	deleteIngredient = id => {
-		const ingredients = this.state.ingredients.filter(ingredient => {
-			return ingredient.id !== id;
-		});
-
-		this.setState({
-			ingredients
-		});
+	handleChange = event => {
+		const { value } = event.target;
+		this.setState(() => ({ ingredient: value }));
 	};
 
-	addIngredient = ingredient => {
-		ingredient.id = Math.random();
-		let ingredients = [...this.state.ingredients, ingredient];
-		this.setState({ ingredients });
+	handleSubmit = event => {
+		event.preventDefault();
+		const { ingredient, ingredientList } = this.state;
+		this.setState(() => ({
+			ingredientList: [...ingredientList, ingredient],
+			ingredient: ""
+		}));
 	};
+
+	handleRemove = ingredientIndex => () => {
+		const { ingredientList } = this.state;
+		this.setState(() => ({
+			ingredientList: ingredientList.filter(
+				(value, index) => index !== ingredientIndex
+			)
+		}));
+	};
+
+	renderIngredientList = ingredientList =>
+		ingredientList.map((ingredient, key) => (
+			<div key={key}>
+				{ingredient}
+				<button onClick={this.handleRemove(key)}>Remove</button>
+			</div>
+		));
+
 	render() {
+		const { ingredient, ingredientList } = this.state;
 		return (
 			<div>
-				<AddIngredient addIngredient={this.addIngredient} />
-				<Ingredients
-					ingredients={this.state.ingredients}
-					deleteIngredient={this.deleteIngredient}
-				/>
+				<form onSubmit={this.handleSubmit}>
+					<input
+						type='text'
+						onChange={this.handleChange}
+						value={ingredient}
+						placeholder='Enter Ingredient'
+						name='ingredient'
+					/>
+					<button onClick={this.handleSubmit}>Add</button>
+				</form>
+				{ingredientList && this.renderIngredientList(ingredientList)}
 			</div>
 		);
 	}
