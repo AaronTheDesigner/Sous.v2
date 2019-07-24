@@ -1,33 +1,19 @@
 // if you want to show initial data :)
-const INITIAL_DATA = [
-	{
-		id: 0,
-		text: "corn"
-	},
-	{
-		id: 1,
-		text: "beans"
-	}
-];
 
-import { ADD_INGREDIENT, REMOVE_INGREDIENT } from "../actions/types";
+const INITIAL_STATE = ["peaches", "bread"];
 
-const IngredientReducer = (state = INITIAL_DATA, action) => {
+export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {
-		case ADD_INGREDIENT:
-			return [
-				...state,
-				{
-					id: action.id,
-					text: action.text
-				}
+		case "ADD_INGREDIENT":
+			state = [...state, action.ingredient];
+			break;
+		case "DELETE_INGREDIENT":
+			state = [
+				...state.filter((ingredient, index) => index !== action.ingredientIndex)
 			];
-		case REMOVE_INGREDIENT:
-			const numIndex = parseInt(action.id);
-			return state.filter(ingredient => ingredient.id !== numIndex);
+			break;
 		default:
 			return state;
 	}
+	return state;
 };
-
-export default IngredientReducer;

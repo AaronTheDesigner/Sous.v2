@@ -1,9 +1,10 @@
 import React from "react";
+import { connect } from "react-redux";
+import { addIngredient, deleteIngredient } from "../../../actions";
 
 class Container extends React.Component {
 	state = {
-		ingredient: "",
-		ingredientList: []
+		ingredient: ""
 	};
 
 	handleChange = event => {
@@ -13,32 +14,28 @@ class Container extends React.Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		const { ingredient, ingredientList } = this.state;
+		const { ingredient } = this.state;
+		this.props.addIngredient(ingredient);
 		this.setState(() => ({
-			ingredientList: [...ingredientList, ingredient],
 			ingredient: ""
 		}));
 	};
 
 	handleRemove = ingredientIndex => () => {
-		const { ingredientList } = this.state;
-		this.setState(() => ({
-			ingredientList: ingredientList.filter(
-				(value, index) => index !== ingredientIndex
-			)
-		}));
+		this.props.deleteIngredient(ingredientIndex);
 	};
 
 	renderIngredientList = ingredientList =>
 		ingredientList.map((ingredient, key) => (
 			<div key={key}>
 				{ingredient}
-				<button onClick={this.handleRemove(key)}>Remove</button>
+				<button onClick={this.handleRemove(key)}>X</button>
 			</div>
 		));
 
 	render() {
-		const { ingredient, ingredientList } = this.state;
+		const { ingredient } = this.state;
+		const { ingredientList } = this.props;
 		return (
 			<div>
 				<form onSubmit={this.handleSubmit}>
@@ -57,4 +54,17 @@ class Container extends React.Component {
 	}
 }
 
-export default Container;
+const mapStateToProps = state => ({
+	ingredientList: state.ing
+});
+
+const mapDispatchToProps = dispatch => ({
+	addIngredient: ingredient => dispatch(addIngredient(ingredient)),
+	deleteIngredient: ingredientIndex =>
+		dispatch(deleteIngredient(ingredientIndex))
+});
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Container);

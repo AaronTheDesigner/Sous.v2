@@ -46,15 +46,12 @@ export const getLong = () => dispatch => {
 	});
 };
 
-//__List__\\
+export const addIngredient = ingredient => ({
+	type: "ADD_INGREDIENT",
+	ingredient
+});
 
-// export const addIngredient = text => ({
-// 	type: ADD_INGREDIENT,
-// 	id: IngredientId++,
-// 	text
-// });
-
-// export const removeIngredient = id => ({
-// 	type: REMOVE_INGREDIENT,
-// 	id: id
-// });
+export const deleteIngredient = ingredientIndex => ({
+	type: "DELETE_INGREDIENT",
+	ingredientIndex
+});

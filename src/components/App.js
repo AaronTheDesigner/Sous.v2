@@ -6,7 +6,7 @@ import { getLong, getLat } from "../actions";
 
 //Page Components
 //import Main from "./pages/main";
-import Main from "./pages/main";
+import Container from "./pages/main_two/Container";
 import Detail from "./pages/detail";
 import List from "./pages/gallery";
 import GoogleAuth from "./GoogleAuth";
@@ -46,7 +46,7 @@ class App extends React.Component {
 			<div>
 				<GoogleAuth />
 				<BrowserRouter>
-					<Route path='/' exact render={() => <Main />} />
+					<Route path='/' exact render={() => <Container />} />
 					<Route path='/detail' component={Detail} />
 					<Route path='/list' component={List} />
 				</BrowserRouter>
