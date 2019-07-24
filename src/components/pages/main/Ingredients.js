@@ -4,12 +4,15 @@ const Ingredients = ({ ingredients, deleteIngredient }) => {
 	const ingredientList = ingredients.length ? (
 		ingredients.map(ingredient => {
 			return (
-				<div
-					key={ingredient.id}
-					onClick={() => {
-						deleteIngredient(ingredient.id);
-					}}>
+				<div key={ingredient.id}>
 					{ingredient.content}
+					<button
+						onClick={() => {
+							deleteIngredient(ingredient.id);
+						}}>
+						{" "}
+						X
+					</button>
 				</div>
 			);
 		})

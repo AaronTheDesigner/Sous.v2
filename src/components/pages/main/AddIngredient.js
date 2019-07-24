@@ -27,6 +27,7 @@ class AddIngredient extends React.Component {
 						onChange={this.onChange}
 						value={this.state.content}
 					/>
+					<button>Add</button>
 				</form>
 			</div>
 		);

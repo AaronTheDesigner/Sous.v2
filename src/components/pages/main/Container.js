@@ -1,10 +1,14 @@
 import React from "react";
 import Ingredients from "./Ingredients";
 import AddIngredient from "./AddIngredient";
+import { getArray, getSummary, getInfo } from "../../../api/recipe";
 
 class Container extends React.Component {
 	state = {
-		ingredients: [{ id: 1, content: "beef" }, { id: 2, content: "relish" }]
+		ingredients: [],
+		mainId: null,
+		image: "",
+		gallery: [{ id: 1, title: "ok", image: "http//ten.com" }]
 	};
 
 	deleteIngredient = id => {
@@ -21,8 +25,39 @@ class Container extends React.Component {
 		ingredient.id = Math.random();
 		let ingredients = [...this.state.ingredients, ingredient];
 		this.setState({ ingredients });
+		this.updateResults(ingredients);
 	};
+
+	updateResults = ingredients => {
+		let search = this.state.ingredients.map(ingredient => {
+			return ingredient.content;
+		});
+		getArray("", {
+			params: {
+				ingredients: search.join(", ")
+			}
+		}).then(res => {
+			console.log(res.data);
+		});
+	};
+
+	updateDetails = id => {
+		let info = getInfo(id);
+		info().then(res => {
+			console.log(res.data);
+			this.setState({ image: res.data.image });
+		});
+	};
+
+	updateSummary = id => {
+		let summary = getSummary(id);
+		summary().then(res => {
+			console.log(res.data);
+		});
+	};
+
 	render() {
+		console.log(this.state.gallery);
 		return (
 			<div>
 				<AddIngredient addIngredient={this.addIngredient} />
