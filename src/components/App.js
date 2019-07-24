@@ -6,7 +6,7 @@ import { getLong, getLat } from "../actions";
 
 //Page Components
 //import Main from "./pages/main";
-import Container from "./pages/main_two/Container";
+import Container from "./pages/main";
 import Detail from "./pages/detail";
 import List from "./pages/gallery";
 import GoogleAuth from "./GoogleAuth";
