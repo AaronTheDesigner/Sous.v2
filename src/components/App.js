@@ -8,7 +8,7 @@ import { getLong, getLat } from "../actions";
 //import Main from "./pages/main";
 import Container from "./pages/main";
 import Detail from "./pages/detail";
-import List from "./pages/gallery";
+import Gallery from "./pages/gallery";
 import GoogleAuth from "./GoogleAuth";
 
 class App extends React.Component {
@@ -48,7 +48,7 @@ class App extends React.Component {
 				<BrowserRouter>
 					<Route path='/' exact render={() => <Container />} />
 					<Route path='/detail' component={Detail} />
-					<Route path='/list' component={List} />
+					<Route path='/gallery' component={Gallery} />
 				</BrowserRouter>
 			</div>
 		);

@@ -1,6 +1,6 @@
 // if you want to show initial data :)
 
-const INITIAL_STATE = ["peaches", "bread"];
+const INITIAL_STATE = [];
 
 export default (state = INITIAL_STATE, action) => {
 	switch (action.type) {

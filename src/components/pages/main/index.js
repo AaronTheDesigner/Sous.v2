@@ -2,6 +2,9 @@ import React from "react";
 import { connect } from "react-redux";
 import { addIngredient, deleteIngredient } from "../../../actions";
 
+//Components
+import Main from "./Main";
+
 class Container extends React.Component {
 	state = {
 		ingredient: ""
@@ -38,6 +41,7 @@ class Container extends React.Component {
 		const { ingredientList } = this.props;
 		return (
 			<div>
+				<Main submit={this.handleSubmit} />
 				<form onSubmit={this.handleSubmit}>
 					<input
 						type='text'
