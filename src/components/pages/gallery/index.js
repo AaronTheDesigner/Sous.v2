@@ -4,6 +4,10 @@ import { Link } from "react-router-dom";
 const Gallery = props => {
 	const gallery = props.location.state.gallery;
 
+	const goBack = () => {
+		props.history.goBack();
+	};
+
 	const renderGallery = () => {
 		return gallery.map(item => {
 			return (
@@ -22,7 +26,13 @@ const Gallery = props => {
 		});
 	};
 
-	return <div>{renderGallery()}</div>;
+	return (
+		<div>
+			<button onClick={goBack}>Main</button>
+
+			{renderGallery()}
+		</div>
+	);
 };
 
 export default Gallery;

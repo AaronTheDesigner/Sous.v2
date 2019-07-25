@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getInfo } from "../../../api/recipe";
+import { Link } from "react-router-dom";
 
 const Detail = props => {
+	console.log(props.history);
 	const [id, setId] = useState(props.location.state.id);
 	const [title, setTitle] = useState("");
 	const [credits, setCredits] = useState("");
@@ -44,36 +46,19 @@ const Detail = props => {
 		});
 	}, []);
 
-	// const insArray = [
-	// 	{
-	// 		number: 1,
-	// 		step:
-	// 			"Brush bread with 2 tbsp. olive oil and broil until golden, turning once, 5 minutes."
-	// 	},
-	// 	{
-	// 		number: 2,
-	// 		step:
-	// 			"In a frying pan over medium heat, saut onion with remaining oil until golden."
-	// 	},
-	// 	{ number: 3, step: "Add apple and syrup; cook 5 minutes." },
-	// 	{
-	// 		number: 4,
-	// 		step:
-	// 			"Let cool slightly. Stir in cherries, horseradish, and cheese; spoon over toasts. Top with nuts."
-	// 	}
-	// ];
+	const goBack = () => {
+		props.history.goBack();
+	};
 
-	// const map = insArray.map(ins => {
-	// 	return { key: ins.number, step: ins.step };
-	// });
-
-	// useEffect(() => {
-	// 	// Should not ever set state during rendering, so do this in useEffect instead.
-	// 	setInstructions(map);
-	// }, []);
-
-	console.log(id, title, credits, image, ingredients, sourceUrl, instructions);
-	return <div>Detail Array test</div>;
+	return (
+		<div>
+			Detail
+			<br />
+			<Link to={{ pathname: "/" }}>Main</Link>
+			<br />
+			<button onClick={goBack}>Gallery</button>
+		</div>
+	);
 };
 
 export default Detail;
