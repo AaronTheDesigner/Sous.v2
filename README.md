@@ -26,8 +26,9 @@ inspirations. Be your own sous chef!
 9. OpenWeather to App(complete)
 10. Recipe API w/ Axios(complete)
 11. Ingredient List(complete)
-12. Main Page(in progress) a. wire list to axios b. wire conditions c. link
-    props to gallery page d. link props to detail page
-13. Detail Page
-14. Gallery Page
-15. Styling
+12. Main Page(complete) a. wire list to axios b. wire conditions c. link props
+    to gallery page d. link props to detail page
+13. Detail Page(complete)
+14. Gallery Page(complete)
+15. Split/Component(in progress)
+16. Styling(in progress)
