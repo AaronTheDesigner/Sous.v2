@@ -43,7 +43,7 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
+			<div className='container-fluid'>
 				<GoogleAuth />
 				<BrowserRouter>
 					<Route path='/' exact render={() => <Container />} />
