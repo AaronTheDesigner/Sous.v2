@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { addIngredient, deleteIngredient } from "../../../actions";
-import "./Main.css";
+//import "./Main.css";
 
 //Components
 import Main from "./Main";
@@ -33,8 +33,8 @@ class Container extends React.Component {
 	renderIngredientList = ingredientList =>
 		ingredientList.map((ingredient, key) => (
 			<li
+				className='list-group-item'
 				key={key}
-				className='list-group-item text-center align-bottom item'
 				onClick={this.handleRemove(key)}>
 				<p>{ingredient}</p>
 			</li>
@@ -44,30 +44,36 @@ class Container extends React.Component {
 		const { ingredient } = this.state;
 		const { ingredientList } = this.props;
 		return (
-			<div>
-				<Main submit={this.handleSubmit} />
-				<form onSubmit={this.handleSubmit} className='form-inline search'>
-					<div className='input-group mb-3'>
-						{" "}
-						<input
-							type='text'
-							className='form-control'
-							onChange={this.handleChange}
-							value={ingredient}
-							placeholder='Enter Ingredient'
-							name='ingredient'
-						/>
-						<div className='input-group-append'>
-							<button
-								className='btn btn-outline-secondary'
-								onClick={this.handleSubmit}>
-								Add
-							</button>
+			<div className='row'>
+				<div className='col-lg-4'>
+					<div className='card'>
+						<Main submit={this.handleSubmit} />
+						<div className='container'>
+							<form onSubmit={this.handleSubmit}>
+								<div className='input-group mb-3'>
+									{" "}
+									<input
+										type='text'
+										className='form-control'
+										onChange={this.handleChange}
+										value={ingredient}
+										placeholder='Enter Ingredient'
+										name='ingredient'
+									/>
+									<div className='input-group-append'>
+										<button
+											className='btn btn-outline-secondary'
+											onClick={this.handleSubmit}>
+											Add
+										</button>
+									</div>
+								</div>
+							</form>
+						</div>
+						<div className='list-group list-group-flush'>
+							{ingredientList && this.renderIngredientList(ingredientList)}
 						</div>
 					</div>
-				</form>
-				<div className='list-group list-group-flush'>
-					{ingredientList && this.renderIngredientList(ingredientList)}
 				</div>
 			</div>
 		);

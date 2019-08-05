@@ -60,15 +60,91 @@ const Detail = props => {
 		props.history.goBack();
 	};
 
+	const renderIngredients = () => {
+		return ingredients.map(ingredient => {
+			return (
+				<li key={ingredient.id} className='list-group-item'>
+					{ingredient.name}/{ingredient.aisle}
+				</li>
+			);
+		});
+	};
+
+	const renderInstructions = () => {
+		return instructions.map(instruction => {
+			return (
+				<li key={instruction.number} className='list-group-item'>
+					{instruction.step}
+				</li>
+			);
+		});
+	};
+
 	return (
 		<div>
-			Detail
-			<br />
-			<button>
-				<Link to={{ pathname: "/" }}>Main</Link>
-			</button>
-			<br />
-			<button onClick={goBack}>Gallery</button>
+			<div className='card mb-3'>
+				<img src={image} alt='' className='card-img-top' />
+				<div className='container'>
+					<div className='card-content'>
+						<h5 className='card-title'>
+							{title} by{" "}
+							<a href={sourceUrl} className='card-link'>
+								{credits}
+							</a>{" "}
+						</h5>
+					</div>
+				</div>
+				<div className='accordion' id='ingredients'>
+					<div className='card'>
+						<div className='card-header'>
+							<h2 className='mb-0'>
+								<button
+									className='btn'
+									type='button'
+									data-toggle='collapse'
+									data-target='#collapseOne'
+									aria-expanded='true'
+									aria-controls='collapseOne'>
+									Ingredients
+								</button>
+							</h2>
+						</div>
+					</div>
+				</div>
+				<div className='accordion' id='instructions'>
+					<div className='card'>
+						<div className='card-header'>
+							<h2 className='mb-0'>
+								<button
+									className='btn'
+									type='button'
+									data-toggle='collapse'
+									data-target='#collapseTwo'
+									aria-expanded='true'
+									aria-controls='collapseTwo'>
+									Instructions
+								</button>
+							</h2>
+						</div>
+					</div>
+				</div>
+
+				<div
+					id='collapseOne'
+					class='collapse'
+					aria-labelledby='headingOne'
+					data-parent='#ingredients'>
+					<div class='list-group-flush'>{renderIngredients()}</div>
+				</div>
+
+				<div
+					id='collapseTwo'
+					class='collapse'
+					aria-labelledby='headingTwo'
+					data-parent='#instructions'>
+					<div class='list-group-flush'>{renderInstructions()}</div>
+				</div>
+			</div>
 		</div>
 	);
 };

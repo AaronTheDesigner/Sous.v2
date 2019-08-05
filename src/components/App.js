@@ -9,7 +9,7 @@ import { getLong, getLat } from "../actions";
 import Container from "./pages/main";
 import Detail from "./pages/detail";
 import Gallery from "./pages/gallery";
-import GoogleAuth from "./GoogleAuth";
+//import GoogleAuth from "./GoogleAuth";
 
 class App extends React.Component {
 	// state = {
@@ -44,7 +44,6 @@ class App extends React.Component {
 	render() {
 		return (
 			<div className='container-fluid'>
-				<GoogleAuth />
 				<BrowserRouter>
 					<Route path='/' exact render={() => <Container />} />
 					<Route path='/detail' component={Detail} />

@@ -44,7 +44,7 @@ class Main extends React.Component {
 		const image = this.state.image;
 		if (image === "") {
 			return (
-				<div>
+				<div className='container'>
 					<img className='img-fluid' src={placeholder} alt='placeholder' />
 				</div>
 			);
@@ -52,27 +52,37 @@ class Main extends React.Component {
 
 		return (
 			<div>
-				<h5>{this.state.title}</h5>
-				<img className='img-fluid' src={image} alt={title} />
+				<div className='container-fluid'>
+					<h5 className='card-title'>{this.state.title}</h5>
+					<img className='card-img top' src={image} alt={title} />
+				</div>
+				<div className='container'>
+					<Link
+						to={{
+							pathname: "/gallery",
+							state: { gallery: this.state.gallery }
+						}}>
+						<button className='btn btn-outline-secondary'>
+							Gallery{" "}
+							<span class='badge badge-light'>{this.state.gallery.length}</span>
+						</button>
+					</Link>
+					<Link
+						to={{
+							pathname: "/detail",
+							state: { id: this.state.id }
+						}}>
+						<button className='btn btn-outline-secondary'>Detail</button>
+					</Link>
+				</div>
+				<br />
 			</div>
 		);
 	};
 
 	render() {
 		console.log(placeholder);
-		return (
-			<div>
-				{this.renderImage()}
-
-				<Link
-					to={{
-						pathname: "/gallery",
-						state: { gallery: this.state.gallery }
-					}}>
-					Gallery
-				</Link>
-			</div>
-		);
+		return <div>{this.renderImage()}</div>;
 	}
 }
 
