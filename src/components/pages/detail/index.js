@@ -1,20 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { getInfo } from "../../../api/recipe";
+import { getInfo, getSummary } from "../../../api/recipe";
 import { Link } from "react-router-dom";
 
 const Detail = props => {
-	//const [id, setId] = useState(null);
+	const [id, setId] = useState(props.location.state.id);
 	const [title, setTitle] = useState("");
 	const [credits, setCredits] = useState("");
 	const [image, setImage] = useState("");
 	const [sourceUrl, setSourceUrl] = useState("");
 	const [ingredients, setIngredients] = useState([]);
 	const [instructions, setInstructions] = useState([]);
+	const [summary, setSummary] = useState("");
 
-	const id = props.location.state.id;
+	//const id = props.location.state.id;
 
 	useEffect(() => {
 		const detail = getInfo(id);
+		const summary = getSummary(id);
+		summary()
+			.then(res => {
+				const sum = res.data.summary;
+				setSummary(sum);
+			})
+			.catch(err => {
+				console.log(err);
+			});
 		detail()
 			.then(res => {
 				const title = res.data.title;
@@ -29,27 +39,19 @@ const Detail = props => {
 						aisle: ingredient.aisle
 					};
 				});
-				const analyzedInstructions = res.data.analyzedInstructions[0].steps;
-				const instructions = analyzedInstructions.map(step => {
+				const analyzedInstructions = res.data.analyzedInstructions;
+				const instructions = analyzedInstructions[0].steps.map(step => {
 					return {
 						number: step.number,
 						step: step.step
 					};
 				});
-				console.log(
-					title,
-					credits,
-					image,
-					ingredients,
-					sourceUrl,
-					instructions
-				);
+				setInstructions(instructions);
 				setTitle(title);
 				setCredits(credits);
 				setImage(image);
 				setSourceUrl(sourceUrl);
 				setIngredients(ingredients);
-				setInstructions(instructions);
 			})
 			.catch(err => {
 				console.log(err);
@@ -80,6 +82,8 @@ const Detail = props => {
 		});
 	};
 
+	console.log(summary);
+
 	return (
 		<div>
 			<div className='card mb-3'>
@@ -94,55 +98,69 @@ const Detail = props => {
 						</h5>
 					</div>
 				</div>
-				<div className='accordion' id='ingredients'>
-					<div className='card'>
-						<div className='card-header'>
-							<h2 className='mb-0'>
-								<button
-									className='btn'
-									type='button'
-									data-toggle='collapse'
-									data-target='#collapseOne'
-									aria-expanded='true'
-									aria-controls='collapseOne'>
-									Ingredients
-								</button>
-							</h2>
-						</div>
+				<div className='container'>
+					<div className='btn-group'>
+						<Link to='/'>
+							<button className='btn btn-outline-secondary'>Restart</button>
+						</Link>
+
+						<button className='btn btn-outline-secondary' onClick={goBack}>
+							Gallery
+						</button>
 					</div>
 				</div>
-				<div className='accordion' id='instructions'>
-					<div className='card'>
-						<div className='card-header'>
-							<h2 className='mb-0'>
-								<button
-									className='btn'
-									type='button'
-									data-toggle='collapse'
-									data-target='#collapseTwo'
-									aria-expanded='true'
-									aria-controls='collapseTwo'>
-									Instructions
-								</button>
-							</h2>
+				<hr />
+				<div className='contianer'>
+					<div className='accordion' id='ingredients'>
+						<div className='card'>
+							<div className='card-header'>
+								<h2 className='mb-0'>
+									<button
+										className='btn'
+										type='button'
+										data-toggle='collapse'
+										data-target='#collapseOne'
+										aria-expanded='true'
+										aria-controls='collapseOne'>
+										Ingredients
+									</button>
+								</h2>
+							</div>
+						</div>
+					</div>
+					<div className='accordion' id='instructions'>
+						<div className='card'>
+							<div className='card-header'>
+								<h2 className='mb-0'>
+									<button
+										className='btn'
+										type='button'
+										data-toggle='collapse'
+										data-target='#collapseTwo'
+										aria-expanded='true'
+										aria-controls='collapseTwo'>
+										Instructions
+									</button>
+								</h2>
+							</div>
 						</div>
 					</div>
 				</div>
 
 				<div
 					id='collapseOne'
-					class='collapse'
+					className='collapse'
 					aria-labelledby='headingOne'
 					data-parent='#ingredients'>
-					<div class='list-group-flush'>{renderIngredients()}</div>
+					<div className='list-group-flush'>{renderIngredients()}</div>
 				</div>
 
 				<div
 					id='collapseTwo'
-					class='collapse'
+					className='collapse'
 					aria-labelledby='headingTwo'
 					data-parent='#instructions'>
-					<div class='list-group-flush'>{renderInstructions()}</div>
+					<div className='list-group-flush'>{renderInstructions()}</div>
 				</div>
 			</div>
 		</div>
