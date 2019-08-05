@@ -66,7 +66,7 @@ const Detail = props => {
 		return ingredients.map(ingredient => {
 			return (
 				<li key={ingredient.id} className='list-group-item'>
-					{ingredient.name}/{ingredient.aisle}
+					{ingredient.name}
 				</li>
 			);
 		});
@@ -86,81 +86,85 @@ const Detail = props => {
 
 	return (
 		<div>
-			<div className='card mb-3'>
-				<img src={image} alt='' className='card-img-top' />
-				<div className='container'>
-					<div className='card-content'>
-						<h5 className='card-title'>
-							{title} by{" "}
-							<a href={sourceUrl} className='card-link'>
-								{credits}
-							</a>{" "}
-						</h5>
-					</div>
-				</div>
-				<div className='container'>
-					<div className='btn-group'>
-						<Link to='/'>
-							<button className='btn btn-outline-secondary'>Restart</button>
-						</Link>
-
-						<button className='btn btn-outline-secondary' onClick={goBack}>
-							Gallery
-						</button>
-					</div>
-				</div>
-				<hr />
-				<div className='contianer'>
-					<div className='accordion' id='ingredients'>
-						<div className='card'>
-							<div className='card-header'>
-								<h2 className='mb-0'>
-									<button
-										className='btn'
-										type='button'
-										data-toggle='collapse'
-										data-target='#collapseOne'
-										aria-expanded='true'
-										aria-controls='collapseOne'>
-										Ingredients
-									</button>
-								</h2>
+			<div className='container'>
+				<div className='row'>
+					<div className='card mb-3'>
+						<img src={image} alt='' className='card-img-top' />
+						<div className='container'>
+							<div className='card-content'>
+								<h5 className='card-title'>
+									{title} by{" "}
+									<a href={sourceUrl} className='card-link'>
+										{credits}
+									</a>{" "}
+								</h5>
 							</div>
 						</div>
-					</div>
-					<div className='accordion' id='instructions'>
-						<div className='card'>
-							<div className='card-header'>
-								<h2 className='mb-0'>
-									<button
-										className='btn'
-										type='button'
-										data-toggle='collapse'
-										data-target='#collapseTwo'
-										aria-expanded='true'
-										aria-controls='collapseTwo'>
-										Instructions
-									</button>
-								</h2>
+						<div className='container'>
+							<div className='btn-group'>
+								<Link to='/'>
+									<button className='btn btn-outline-secondary'>Restart</button>
+								</Link>
+
+								<button className='btn btn-outline-secondary' onClick={goBack}>
+									Gallery
+								</button>
 							</div>
 						</div>
+						<hr />
+						<div className='contianer'>
+							<div className='accordion' id='ingredients'>
+								<div className='card'>
+									<div className='card-header'>
+										<h2 className='mb-0'>
+											<button
+												className='btn'
+												type='button'
+												data-toggle='collapse'
+												data-target='#collapseOne'
+												aria-expanded='true'
+												aria-controls='collapseOne'>
+												Ingredients
+											</button>
+										</h2>
+									</div>
+								</div>
+							</div>
+							<div className='accordion' id='instructions'>
+								<div className='card'>
+									<div className='card-header'>
+										<h2 className='mb-0'>
+											<button
+												className='btn'
+												type='button'
+												data-toggle='collapse'
+												data-target='#collapseTwo'
+												aria-expanded='true'
+												aria-controls='collapseTwo'>
+												Instructions
+											</button>
+										</h2>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div
+							id='collapseOne'
+							className='collapse'
+							aria-labelledby='headingOne'
+							data-parent='#ingredients'>
+							<div className='list-group-flush'>{renderIngredients()}</div>
+						</div>
+
+						<div
+							id='collapseTwo'
+							className='collapse'
+							aria-labelledby='headingTwo'
+							data-parent='#instructions'>
+							<div className='list-group-flush'>{renderInstructions()}</div>
+						</div>
 					</div>
-				</div>
-
-				<div
-					id='collapseOne'
-					className='collapse'
-					aria-labelledby='headingOne'
-					data-parent='#ingredients'>
-					<div className='list-group-flush'>{renderIngredients()}</div>
-				</div>
-
-				<div
-					id='collapseTwo'
-					className='collapse'
-					aria-labelledby='headingTwo'
-					data-parent='#instructions'>
-					<div className='list-group-flush'>{renderInstructions()}</div>
 				</div>
 			</div>
 		</div>

@@ -11,26 +11,36 @@ const Gallery = props => {
 	const renderGallery = () => {
 		return gallery.map(item => {
 			return (
-				<div key={item.id}>
-					<img src={item.image} alt={item.title} />
-					<span>{item.title}</span>
-					<Link
-						to={{
-							pathname: "/detail",
-							state: { id: item.id }
-						}}>
-						Details
-					</Link>
+				<div key={item.id} className='card mb-3'>
+					<img src={item.image} alt={item.title} className='card-image' />
+					<div className='container'>
+						<hr />
+						<h5 className='card-title'>{item.title}</h5>
+						<Link
+							to={{
+								pathname: "/detail",
+								state: { id: item.id }
+							}}>
+							<button className='btn btn-outline-secondary'>Details</button>
+						</Link>
+						<hr />
+					</div>
 				</div>
 			);
 		});
 	};
 
 	return (
-		<div>
-			<button onClick={goBack}>Main</button>
-
-			{renderGallery()}
+		<div className='container-fluid'>
+			<button onClick={goBack} className='btn btn-outline-primary'>
+				Restart
+			</button>
+			<hr />
+			<div className='row'>
+				<div className='col-sm' />
+				{renderGallery()}
+				<div className='col-sm' />
+			</div>
 		</div>
 	);
 };
