@@ -64,7 +64,9 @@ class Main extends React.Component {
 						}}>
 						<button className='btn btn-outline-secondary'>
 							Gallery{" "}
-							<span class='badge badge-light'>{this.state.gallery.length}</span>
+							<span className='badge badge-light'>
+								{this.state.gallery.length}
+							</span>
 						</button>
 					</Link>
 					<Link

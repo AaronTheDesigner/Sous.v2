@@ -40,13 +40,16 @@ const Detail = props => {
 					};
 				});
 				const analyzedInstructions = res.data.analyzedInstructions;
-				const instructions = analyzedInstructions[0].steps.map(step => {
-					return {
-						number: step.number,
-						step: step.step
-					};
-				});
-				setInstructions(instructions);
+				console.log(analyzedInstructions);
+				if (analyzedInstructions.length > 0) {
+					const instructions = analyzedInstructions[0].steps.map(step => {
+						return {
+							number: step.number,
+							step: step.step
+						};
+					});
+					setInstructions(instructions);
+				}
 				setTitle(title);
 				setCredits(credits);
 				setImage(image);
@@ -73,6 +76,14 @@ const Detail = props => {
 	};
 
 	const renderInstructions = () => {
+		if (instructions.length === 0) {
+			return (
+				<li className='list-group-item'>
+					No analyzed instructions. Please refer to the author link above.
+				</li>
+			);
+		}
+
 		return instructions.map(instruction => {
 			return (
 				<li key={instruction.number} className='list-group-item'>
@@ -81,8 +92,6 @@ const Detail = props => {
 			);
 		});
 	};
-
-	console.log(summary);
 
 	return (
 		<div>
