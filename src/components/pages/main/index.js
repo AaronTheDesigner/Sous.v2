@@ -5,11 +5,12 @@ import { addIngredient, deleteIngredient } from "../../../actions";
 
 //Components
 import Main from "./Main";
-import Item from "../../ui/Item";
+//import Item from "../../ui/Item";
 
 class Container extends React.Component {
 	state = {
-		ingredient: ""
+		ingredient: "",
+		message: "Enter Ingredients"
 	};
 
 	handleChange = event => {
@@ -19,11 +20,15 @@ class Container extends React.Component {
 
 	handleSubmit = event => {
 		event.preventDefault();
-		const { ingredient } = this.state;
-		this.props.addIngredient(ingredient);
-		this.setState(() => ({
-			ingredient: ""
-		}));
+		if (this.state.ingredient === "") {
+			this.setState({ message: "Please enter an ingredient..." });
+		} else {
+			const { ingredient } = this.state;
+			this.props.addIngredient(ingredient);
+			this.setState(() => ({
+				ingredient: ""
+			}));
+		}
 	};
 
 	handleRemove = ingredientIndex => () => {
@@ -57,7 +62,7 @@ class Container extends React.Component {
 										className='form-control'
 										onChange={this.handleChange}
 										value={ingredient}
-										placeholder='Enter Ingredient'
+										placeholder={this.state.message}
 										name='ingredient'
 									/>
 									<div className='input-group-append'>

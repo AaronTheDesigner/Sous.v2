@@ -3,13 +3,15 @@ import { connect } from "react-redux";
 import { getArray } from "../../../api/recipe";
 import { Link } from "react-router-dom";
 import placeholder from "../../../assets/placeholder.jpg";
+import "./Main.css";
 
 class Main extends React.Component {
 	state = {
 		title: "",
 		id: null,
 		image: "",
-		gallery: []
+		gallery: [],
+		message: "What's in your fridge, or on your shopping list?"
 	};
 
 	componentDidUpdate(prevProps) {
@@ -32,11 +34,17 @@ class Main extends React.Component {
 					this.setState({ title, id, gallery, image });
 				})
 				.catch(err => {
-					if (err) {
-						console.log("continue to enter ingredients");
-					}
+					console.log(err);
 				});
 		}
+	}
+
+	renderIntro() {
+		return (
+			<div className='list-group list-group-flush'>
+				<li className='list-group-item'>{this.state.message}</li>
+			</div>
+		);
 	}
 
 	renderImage = () => {
@@ -46,6 +54,7 @@ class Main extends React.Component {
 			return (
 				<div className='container'>
 					<img className='img-fluid' src={placeholder} alt='placeholder' />
+					{this.renderIntro()}
 				</div>
 			);
 		}
@@ -83,7 +92,6 @@ class Main extends React.Component {
 	};
 
 	render() {
-		console.log(placeholder);
 		return <div>{this.renderImage()}</div>;
 	}
 }
